@@ -1,7 +1,7 @@
 {
   "name": "ember-simplemde",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.1.0",
+  "description": "A component wrapper for SimpleMDE markdown editor",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -40,7 +40,10 @@
     "loader.js": "^4.0.10"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "markdown",
+    "editor",
+    "simplemde"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.7",
