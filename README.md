@@ -8,9 +8,23 @@
 
 A wrapper around the SimpleMDE editor for use in ember-cli projects
 
+## Usage on ember project
+
+* Install with `ember install ember-simplemde`
+* Use the component with:
+
+    ```
+    // Controller
+    theValue: "This is a test of **simpleMDE**"
+    ```
+
+    ```
+    {{simple-mde value=theValue change=(action (mut theValue))}}
+    ```
+
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone https://github.com/smith-carson/ember-simplemde.git`
 * `cd ember-simplemde`
 * `npm install`
 * `bower install`
