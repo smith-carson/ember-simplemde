@@ -54,6 +54,8 @@ export default Ember.TextArea.extend({
   didReceiveAttrs () {
     let editor = this.get('currentEditor');
     if (Ember.isEmpty(editor)) { return; }
+    let cursor = editor.codemirror.getDoc().getCursor();
     editor.value(this.get('value'));
+    editor.codemirror.getDoc().setCursor(cursor);
   }
 });
