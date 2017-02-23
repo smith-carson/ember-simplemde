@@ -1,0 +1,1 @@
+export { default } from 'ember-simplemde/components/simple-mde';

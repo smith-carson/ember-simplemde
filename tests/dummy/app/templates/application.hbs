@@ -1,0 +1,11 @@
+<h1>Simple MDE dummy app</h1>
+
+<h2>Using change action method</h2>
+{{simple-mde value=value rows="3" change="showNewValue"}}
+<p> New Value : </p>
+{{{newValue}}}
+
+<h2>Using mut action method</h2>
+{{simple-mde value=value rows="3" change=(action (mut value))}}
+<p> Value : </p>
+{{{value}}}
