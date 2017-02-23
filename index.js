@@ -10,10 +10,15 @@ module.exports = {
     return path.join(__dirname, 'blueprints');
   },
 
-  included: function(app) {
-    this._super.included(app);
+  included: function(app, parentAddon) {
+    this._super.included(...arguments);
+    while (app.app) {
+      app = app.app;
+    }
 
-    this.app.import(app.bowerDirectory + '/simplemde/dist/simplemde.min.js');
-    this.app.import(app.bowerDirectory + '/simplemde/dist/simplemde.min.css');
+    let target = parentAddon || app;
+
+    target.import(`${target.bowerDirectory}/simplemde/dist/simplemde.min.js`);
+    target.import(`${target.bowerDirectory}/simplemde/dist/simplemde.min.css`);
   }
 };

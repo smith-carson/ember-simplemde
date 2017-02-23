@@ -1,4 +1,3 @@
-/* global  SimpleMDE */
 import Ember from 'ember';
 import layout from '../templates/components/simple-mde';
 
@@ -36,7 +35,7 @@ export default Ember.TextArea.extend({
   didInsertElement () {
     this.set('currentEditor', new SimpleMDE(
       Ember.merge({
-        element: document.getElementById(this.elementId),
+        element: document.getElementById(this.elementId)
       }, this.get('buildSimpleMDEOptions')
       )
     ));
@@ -53,7 +52,7 @@ export default Ember.TextArea.extend({
    * updates the editor when the value property change from the outside
    */
   didReceiveAttrs () {
-    let editor= this.get('currentEditor');
+    let editor = this.get('currentEditor');
     if (Ember.isEmpty(editor)) { return; }
     editor.value(this.get('value'));
   }
