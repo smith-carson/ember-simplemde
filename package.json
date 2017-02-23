@@ -1,6 +1,6 @@
 {
   "name": "ember-simplemde",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A component wrapper for SimpleMDE markdown editor",
   "directories": {
     "doc": "doc",
