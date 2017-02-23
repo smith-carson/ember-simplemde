@@ -1,6 +1,6 @@
-# Ember-simplemde
+# ember-simplemde
 
-This README outlines the details of collaborating on this Ember addon.
+A wrapper around the SimpleMDE editor for use in ember-cli projects
 
 ## Installation
 
