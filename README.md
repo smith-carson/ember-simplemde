@@ -45,3 +45,4 @@ A wrapper around the SimpleMDE editor for use in ember-cli projects
 * `ember build`
 
 For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+
