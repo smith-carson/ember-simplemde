@@ -1,4 +1,10 @@
 # ember-simplemde
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![Latest NPM release](https://img.shields.io/npm/v/ember-simplemde.svg)](https://www.npmjs.com/package/ember-simplemde)
+[![Ember Observer Score](http://emberobserver.com/badges/ember-simplemde.svg)](http://emberobserver.com/addons/ember-simplemde)
+[![License](https://img.shields.io/npm/l/ember-simplemde.svg)](LICENSE.md)
+[![Dependencies](https://img.shields.io/david/smith-carson/ember-simplemde.svg)](https://david-dm.org/smith-carson/ember-simplemde)
+[![Dev Dependencies](https://img.shields.io/david/dev/smith-carson/ember-simplemde.svg)](https://david-dm.org/smith-carson/ember-simplemde#info=devDependencies)
 
 A wrapper around the SimpleMDE editor for use in ember-cli projects
 
