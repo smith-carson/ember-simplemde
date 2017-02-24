@@ -5,6 +5,7 @@
 [![License](https://img.shields.io/npm/l/ember-simplemde.svg)](LICENSE.md)
 [![Dependencies](https://img.shields.io/david/smith-carson/ember-simplemde.svg)](https://david-dm.org/smith-carson/ember-simplemde)
 [![Dev Dependencies](https://img.shields.io/david/dev/smith-carson/ember-simplemde.svg)](https://david-dm.org/smith-carson/ember-simplemde#info=devDependencies)
+[![Build Status](https://travis-ci.org/smith-carson/ember-simplemde.svg?branch=master)](https://travis-ci.org/smith-carson/ember-simplemde)
 
 A wrapper around the SimpleMDE editor for use in ember-cli projects, it provides a component `simple-mde` to show the editor, and a helper to show the rendered html `simple-mde-preview` you can check this on the dummy app application template.
 
