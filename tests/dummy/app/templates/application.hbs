@@ -3,11 +3,11 @@
 <h2>Using change action method</h2>
 {{simple-mde value=value change="showNewValue"}}
 <p> New Value : </p>
-{{{newValue}}}
+{{simple-mde-preview newValue}}
 
 <h2>Using mut action method</h2>
 {{simple-mde value=value change=(action (mut value))}}
 <p> Value : </p>
-{{{value}}}
+{{simple-mde-preview value}}
 <p> link a textarea </p>
 {{textarea value=value}}

@@ -6,11 +6,12 @@
 [![Dependencies](https://img.shields.io/david/smith-carson/ember-simplemde.svg)](https://david-dm.org/smith-carson/ember-simplemde)
 [![Dev Dependencies](https://img.shields.io/david/dev/smith-carson/ember-simplemde.svg)](https://david-dm.org/smith-carson/ember-simplemde#info=devDependencies)
 
-A wrapper around the SimpleMDE editor for use in ember-cli projects
+A wrapper around the SimpleMDE editor for use in ember-cli projects, it provides a component `simple-mde` to show the editor, and a helper to show the rendered html `simple-mde-preview` you can check this on the dummy app application template.
 
 ## Usage on ember project
 
 * Install with `ember install ember-simplemde`
+
 * Use the component with:
 
     ```
@@ -21,6 +22,10 @@ A wrapper around the SimpleMDE editor for use in ember-cli projects
     ```
     {{simple-mde value=theValue change=(action (mut theValue))}}
     ```
+
+* Use the helper like this:
+
+  ```{{simple-mde-helper theValue}}```
 
 ## Installation
 
