@@ -26,7 +26,7 @@ A wrapper around the SimpleMDE editor for use in ember-cli projects, it provides
 
 * Use the helper like this:
 
-  ```{{simple-mde-helper theValue}}```
+  ```{{simple-mde-preview theValue}}```
 
 ## Installation
 
