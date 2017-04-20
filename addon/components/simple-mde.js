@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import layout from '../templates/components/simple-mde';
 
+/*global SimpleMDE*/
+
 export default Ember.TextArea.extend({
   layout,
 
