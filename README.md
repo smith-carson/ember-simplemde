@@ -49,6 +49,28 @@ You can pass options through to the simpleMDE instance in two ways.
     };
   ```
 
+  Note: If you are customizing the simpleMDE toolbar options from the consuming apps config, simpleMDE needs you to pass toolbar option action handlers as function references. In ember configs, we can only express these function references as strings. Ember-simplemde has a mechanism in place to unpack these strings as function references against the window.SimpleMDE global. So, if you are expressing a custom toolbar option from your consuming apps config, pass the toolbar action handlers as strings.
+
+  For example, the action handler below will be unpacked against the window as `window['SimpleMDE']['toggleBold']` to obtain the original function reference.
+
+  ```
+  module.exports = function(environment) {
+    var ENV = {
+      ...
+      simpleMDE: {
+        toolbar: [
+          {
+            name: 'bold',
+            action: 'SimpleMDE.toggleBold',
+            className: 'fa fa-bold',
+            title: 'Bold'
+          }
+        ]
+      },
+      ...
+    };
+  ```
+
 * You can pass instance options via the simple-mde components `options` attribute. The options attribute will overwrite global options via `ember.assign` so if you want instance options to squash global options you can use this. An example of this is in the `tests/dummy/app/application.hbs` and the corresponding application controller.
 
   ```

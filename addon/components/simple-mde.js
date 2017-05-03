@@ -5,6 +5,7 @@ const {
   assign,
   get,
   testing,
+  typeOf,
 } = Ember;
 
 /*global SimpleMDE*/
@@ -55,8 +56,37 @@ export default Ember.TextArea.extend({
    * get the list of options to pass to init the SimpleMDE instance
    */
   buildSimpleMDEOptions: Ember.computed(function () {
-    return assign({}, this.get('defaultSimpleMdeOptions'), this.get('globalSimpleMdeOptions'), this.get('options'));
+    let builtOptions = assign({}, this.get('defaultSimpleMdeOptions'), this.get('globalSimpleMdeOptions'), this.get('options'));
+
+    if(builtOptions.toolbar && typeOf(builtOptions.toolbar) === 'array') {
+      builtOptions.toolbar.forEach(this.unpackToolbarOption);
+    }
+
+    return builtOptions
   }),
+
+  /**
+   * @method
+   * @private
+   * Because simpleMDE needs toolbar options action handler to be a function reference,
+   * and if toolbar options are passed in from the consuming apps config they are passed in as strings.
+   * Thus, we unpack them and restore the global reference.
+   * If the toolbar action handler is a string, we attempt to reference the global function reference matching that string.
+   */
+  unpackToolbarOption: function(toolbarOption) {
+    if(typeOf(toolbarOption.action) === 'string') {
+      toolbarOption.action = toolbarOption.action
+        .split('.')
+        .reduce(function(accumulator, value) {
+          if(!accumulator) {
+            accumulator = window[value];
+          } else {
+            accumulator = accumulator[value];
+          }
+          return accumulator;
+        }, null);
+    }
+  },
 
   /**
    * @event
