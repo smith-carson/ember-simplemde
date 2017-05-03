@@ -1,6 +1,12 @@
 import Ember from 'ember';
 import layout from '../templates/components/simple-mde';
 
+const {
+  assign,
+  get,
+  testing,
+} = Ember;
+
 /*global SimpleMDE*/
 
 export default Ember.TextArea.extend({
@@ -19,14 +25,37 @@ export default Ember.TextArea.extend({
   change: null,
 
   /**
+  * instance options to pass to simpleMDE
+  */
+  options: {},
+
+  /**
+  * default simpleMDE options
+  */
+  defaultSimpleMdeOptions: Ember.computed(function () {
+    return {
+      showIcons: ['table'],
+    };
+  }),
+
+  /**
+  * global options defined in consuming apps config
+  */
+  globalSimpleMdeOptions: Ember.computed(function() {
+    if(testing) {
+      return {};
+    } else {
+      return get(Ember.getOwner(this).resolveRegistration('config:environment'), 'simpleMDE') || {};
+    }
+  }),
+
+  /**
    * @method
    * @private
    * get the list of options to pass to init the SimpleMDE instance
    */
   buildSimpleMDEOptions: Ember.computed(function () {
-    return {
-      showIcons: ['table']
-    };
+    return assign({}, this.get('defaultSimpleMdeOptions'), this.get('globalSimpleMdeOptions'), this.get('options'));
   }),
 
   /**

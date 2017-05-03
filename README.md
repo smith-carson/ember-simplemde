@@ -26,7 +26,36 @@ A wrapper around the SimpleMDE editor for use in ember-cli projects, it provides
 
 * Use the helper like this:
 
-  ```{{simple-mde-preview theValue}}```
+  ```
+  {{simple-mde-preview theValue}}
+  ```
+
+## Passing options to simpleMDE
+
+You can pass options through to the simpleMDE instance in two ways.
+
+[full list of all simpleMde options](https://github.com/NextStepWebs/simplemde-markdown-editor#configuration)
+
+* You can pass global options that will be applied to all editors via the consuming apps `config/environment` with a property called `simpleMDE`. For example, if you wanted to remove the toolbar from all instances:
+
+  ```
+  module.exports = function(environment) {
+    var ENV = {
+      ...
+      simpleMDE: {
+        toolbar: false
+      },
+      ...
+    };
+  ```
+
+* You can pass instance options via the simple-mde components `options` attribute. The options attribute will overwrite global options via `ember.assign` so if you want instance options to squash global options you can use this. An example of this is in the `tests/dummy/app/application.hbs` and the corresponding application controller.
+
+  ```
+  {{simple-mde value=value options=simpleMdeOptions}}
+  ```
+
+Note: This options parameter is NOT watched. Changing it during runtime will not change the instance properties.
 
 ## Installation
 
@@ -51,4 +80,3 @@ A wrapper around the SimpleMDE editor for use in ember-cli projects, it provides
 * `ember build`
 
 For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
-
