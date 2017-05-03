@@ -62,7 +62,7 @@ export default Ember.TextArea.extend({
       builtOptions.toolbar.forEach(this.unpackToolbarOption);
     }
 
-    return builtOptions
+    return builtOptions;
   }),
 
   /**
