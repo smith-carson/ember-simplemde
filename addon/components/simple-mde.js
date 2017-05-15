@@ -41,7 +41,7 @@ export default Ember.TextArea.extend({
       }, this.get('buildSimpleMDEOptions')
       )
     ));
-    this.get('currentEditor').value(this.get('value'));
+    this.get('currentEditor').value(this.get('value') || '');
 
     this.get('currentEditor').codemirror.on('change', () => {
       this.sendAction('change', this.get('currentEditor').value());
@@ -57,7 +57,7 @@ export default Ember.TextArea.extend({
     let editor = this.get('currentEditor');
     if (Ember.isEmpty(editor)) { return; }
     let cursor = editor.codemirror.getDoc().getCursor();
-    editor.value(this.get('value'));
+    editor.value(this.get('value') || '');
     editor.codemirror.getDoc().setCursor(cursor);
   }
 });
