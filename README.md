@@ -32,50 +32,58 @@ A wrapper around the SimpleMDE editor for use in ember-cli projects, it provides
 
 ## Passing options to simpleMDE
 
-You can pass options through to the simpleMDE instance in two ways.
+ember-simplemde supports all options that SimpleMDE supports.
 
 [full list of all simpleMde options](https://github.com/NextStepWebs/simplemde-markdown-editor#configuration)
 
-* You can pass global options that will be applied to all editors via the consuming apps `config/environment` with a property called `simpleMDE`. For example, if you wanted to remove the toolbar from all instances:
+You can pass options through to the simpleMDE instance in two ways.
 
-  ```
-  module.exports = function(environment) {
-    var ENV = {
-      ...
-      simpleMDE: {
-        toolbar: false
-      },
-      ...
-    };
-  ```
+#### Define Options in your ember config that will be applied to all simpleMDE instances
+You can pass global options that will be applied to all editors via the consuming apps `config/environment` with a property called `simpleMDE`. For example, if you wanted to remove the toolbar from all instances:
 
-  Note: If you are customizing the simpleMDE toolbar options from the consuming apps config, simpleMDE needs you to pass toolbar option action handlers as function references. In ember configs, we can only express these function references as strings. Ember-simplemde has a mechanism in place to unpack these strings as function references against the window.SimpleMDE global. So, if you are expressing a custom toolbar option from your consuming apps config, pass the toolbar action handlers as strings.
+```
+module.exports = function(environment) {
+  var ENV = {
+    ...
+    simpleMDE: {
+      toolbar: false,
+      ... any simpleMDE options go here
+    },
+    ...
+  };
+```
 
-  For example, the action handler below will be unpacked against the window as `window['SimpleMDE']['toggleBold']` to obtain the original function reference.
+Note on toolbar options action handlers: If you are customizing the simpleMDE toolbar options from the consuming apps config, simpleMDE needs you to pass toolbar option action handlers as function references. In ember configs, we can only express these function references as strings. Ember-simplemde has a mechanism in place to unpack these strings as function references against the window.SimpleMDE global. So, if you are expressing a custom toolbar option from your consuming apps config, pass the toolbar action handlers as strings.  If you are passing options to the instance and not using your ember/config you can use function reference's/definitions like normal.
 
-  ```
-  module.exports = function(environment) {
-    var ENV = {
-      ...
-      simpleMDE: {
-        toolbar: [
-          {
-            name: 'bold',
-            action: 'SimpleMDE.toggleBold',
-            className: 'fa fa-bold',
-            title: 'Bold'
-          }
-        ]
-      },
-      ...
-    };
-  ```
+For example, the action handler below will be unpacked against the window as
+```
+window['SimpleMDE']['toggleBold']
+```
 
-* You can pass instance options via the simple-mde components `options` attribute. The options attribute will overwrite global options via `ember.assign` so if you want instance options to squash global options you can use this. An example of this is in the `tests/dummy/app/application.hbs` and the corresponding application controller.
+```
+module.exports = function(environment) {
+  var ENV = {
+    ...
+    simpleMDE: {
+      toolbar: [
+        {
+          name: 'bold',
+          action: 'SimpleMDE.toggleBold',
+          className: 'fa fa-bold',
+          title: 'Bold'
+        }
+      ]
+    },
+    ...
+  };
+```
 
-  ```
-  {{simple-mde value=value options=simpleMdeOptions}}
-  ```
+#### Define options on the individual editor instance
+You can pass instance options via the simple-mde components `options` attribute. The options attribute will overwrite global options via `ember.assign` so if you want instance options to squash global options you can use this. An example of this is in the `tests/dummy/app/application.hbs` and the corresponding application controller.
+
+```
+{{simple-mde value=value options=simpleMdeOptions}}
+```
 
 Note: This options parameter is NOT watched. Changing it during runtime will not change the instance properties.
 
