@@ -32,6 +32,18 @@ test('it renders the new value passed', function(assert) {
   assert.ok(this.$().text().trim().indexOf('Only text') >= 0);
 });
 
+test('it respects options passed to simpleMDE via component options param', function(assert) {
+  this.set('markdownValue', 'This is a **bold** text');
+  this.set('simpleMdeOptions', {
+    toolbar: false
+  });
+  this.render(hbs`{{simple-mde value=markdownValue options=simpleMdeOptions}}`);
+
+  assert.ok(this.$().text().trim().indexOf('This is a **bold** text') >= 0);
+
+  assert.ok(this.$().find('.editor-toolbar').length === 0);
+});
+
 /*
 test('buble change action back', function(assert) {
   let self = this;

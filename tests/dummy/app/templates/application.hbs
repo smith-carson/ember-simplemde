@@ -11,3 +11,13 @@
 {{simple-mde-preview value}}
 <p> link a textarea </p>
 {{textarea value=value}}
+
+<h2>Passing options to the simpleMDE instance</h2>
+<h3>Disable the toolbar</h3>
+{{simple-mde value=value options=simpleMdeOptionsWithNoToolbar}}
+
+<h3>Use the built in Bold action handler</h3>
+{{simple-mde value=value options=simpleMdeOptionsWithCustomToolbar}}
+
+<h3>Create a custom toolbar option with a function reference handler</h3>
+{{simple-mde value=value options=simpleMdeOptionsWithCustomToolbarFunctionRefHandler}}
