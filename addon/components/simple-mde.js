@@ -102,9 +102,14 @@ export default Ember.TextArea.extend({
     ));
     this.get('currentEditor').value(this.get('value') || '');
 
-    this.get('currentEditor').codemirror.on('change', () => {
+    this.get('currentEditor').codemirror.on('change', () => Ember.run.once(this, function() {
       this.sendAction('change', this.get('currentEditor').value());
-    });
+    }));
+  },
+
+  willDestroyElement() {
+    this.get('currentEditor').toTextArea();
+    this.set('currentEditor', null);
   },
 
   /**
