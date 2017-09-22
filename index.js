@@ -1,13 +1,13 @@
-/* jshint node: true */
-'use strict';
+/* eslint-env node */
+'use strict'
 
-var path = require('path');
+const path = require('path')
 
 module.exports = {
   name: 'ember-simplemde',
 
-  blueprintsPath: function() {
-    return path.join(__dirname, 'blueprints');
+  blueprintsPath: function () {
+    return path.join(__dirname, 'blueprints')
   },
 
   options: {
@@ -21,4 +21,4 @@ module.exports = {
       },
     }
   },
-};
+}

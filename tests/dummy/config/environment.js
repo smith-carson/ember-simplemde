@@ -1,9 +1,10 @@
-/* jshint node: true */
+/* eslint-env node */
+'use strict';
 
 module.exports = function(environment) {
-  var ENV = {
+  let ENV = {
     modulePrefix: 'dummy',
-    environment: environment,
+    environment,
     rootURL: '/',
     locationType: 'auto',
     EmberENV: {
@@ -16,8 +17,6 @@ module.exports = function(environment) {
         Date: false
       }
     },
-
-    simpleMDE: {},
 
     APP: {
       // Here you can pass flags/options to your application instance

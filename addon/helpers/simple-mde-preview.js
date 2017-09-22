@@ -1,4 +1,5 @@
 import Ember from 'ember';
+/*global SimpleMDE*/
 
 export function simpleMdePreview(params/*, hash*/) {
   Ember.assert('This helper requires one string parameter', params.length === 1);

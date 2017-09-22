@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
       {
         name: 'custom',
         action: function(editor) {
-          console.log(editor);
+          Ember.Logger.log(editor);
           // Do custom stuff here.
         },
         className: 'fa fa-bath',
