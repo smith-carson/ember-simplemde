@@ -34,7 +34,7 @@ A wrapper around the SimpleMDE editor for use in ember-cli projects, it provides
 
 ember-simplemde supports all options that SimpleMDE supports.
 
-[full list of all simpleMde options](https://github.com/NextStepWebs/simplemde-markdown-editor#configuration)
+[full list of all simpleMde options](https://github.com/sparksuite/simplemde-markdown-editor#configuration)
 
 You can pass options through to the simpleMDE instance in two ways.
 
