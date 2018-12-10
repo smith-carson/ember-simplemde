@@ -108,7 +108,9 @@ export default TextArea.extend({
     this.get('currentEditor').value(this.get('value') || '');
 
     this.get('currentEditor').codemirror.on('change', () => once(this, function() {
-      this.sendAction('change', this.get('currentEditor').value());
+      if (this.change) {
+        this.change(this.get('currentEditor').value())
+      }
     }));
   },
 

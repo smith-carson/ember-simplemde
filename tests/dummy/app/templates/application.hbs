@@ -1,7 +1,7 @@
 <h1>Simple MDE dummy app</h1>
 
 <h2>Using change action method</h2>
-{{simple-mde value=value change="showNewValue"}}
+{{simple-mde value=value change=(action "showNewValue")}}
 <p> New Value : </p>
 {{simple-mde-preview newValue}}
 
