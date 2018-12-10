@@ -13,6 +13,8 @@ const {
 
 /*global SimpleMDE*/
 
+const options = {};
+
 export default TextArea.extend({
   layout,
 
@@ -31,7 +33,7 @@ export default TextArea.extend({
   /**
   * instance options to pass to simpleMDE
   */
-  options: {},
+  options: options,
 
   /**
   * default simpleMDE options
