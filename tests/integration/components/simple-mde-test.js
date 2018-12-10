@@ -42,7 +42,7 @@ module('Integration | Component | simple mde', function(hooks) {
 
     assert.ok(find('*').textContent.trim().indexOf('This is a **bold** text') >= 0);
 
-    assert.ok(this.$().find('.editor-toolbar').length === 0);
+    assert.equal(find('.editor-toolbar'), null);
   });
 
   /*
