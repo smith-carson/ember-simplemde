@@ -1,15 +1,18 @@
-import Ember from 'ember';
+import { helper as buildHelper } from '@ember/component/helper';
+import { htmlSafe } from '@ember/template';
+import { isEmpty, typeOf } from '@ember/utils';
+import { assert } from '@ember/debug';
 /*global SimpleMDE*/
 
 export function simpleMdePreview(params/*, hash*/) {
-  Ember.assert('This helper requires one string parameter', params.length === 1);
+  assert('This helper requires one string parameter', params.length === 1);
   let plainText = params[0];
-  if (Ember.isEmpty(plainText)) {
+  if (isEmpty(plainText)) {
     return '';
   }
-  Ember.assert('Parameter should be string', Ember.typeOf(plainText) === 'string');
+  assert('Parameter should be string', typeOf(plainText) === 'string');
   let rendered = SimpleMDE.prototype.markdown(plainText);
-  return Ember.String.htmlSafe(rendered);
+  return htmlSafe(rendered);
 }
 
-export default Ember.Helper.helper(simpleMdePreview);
+export default buildHelper(simpleMdePreview);

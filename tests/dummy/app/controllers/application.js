@@ -1,6 +1,7 @@
+import Controller from '@ember/controller';
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   newValue: null,
   value: "This is a test with **bold** and _italic_",
 
