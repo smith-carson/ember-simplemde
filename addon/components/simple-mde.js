@@ -1,16 +1,21 @@
+import { once } from '@ember/runloop';
+import { getOwner } from '@ember/application';
+import TextArea from '@ember/component/text-area';
+import { assign, merge } from '@ember/polyfills';
+import { get, computed } from '@ember/object';
+import { typeOf, isEmpty } from '@ember/utils';
 import Ember from 'ember';
 import layout from '../templates/components/simple-mde';
 
 const {
-  assign,
-  get,
-  testing,
-  typeOf,
+  testing
 } = Ember;
 
 /*global SimpleMDE*/
 
-export default Ember.TextArea.extend({
+const options = {};
+
+export default TextArea.extend({
   layout,
 
   /**
@@ -28,12 +33,12 @@ export default Ember.TextArea.extend({
   /**
   * instance options to pass to simpleMDE
   */
-  options: {},
+  options: options,
 
   /**
   * default simpleMDE options
   */
-  defaultSimpleMdeOptions: Ember.computed(function () {
+  defaultSimpleMdeOptions: computed(function () {
     return {
       showIcons: ['table'],
     };
@@ -42,11 +47,11 @@ export default Ember.TextArea.extend({
   /**
   * global options defined in consuming apps config
   */
-  globalSimpleMdeOptions: Ember.computed(function() {
+  globalSimpleMdeOptions: computed(function() {
     if(testing) {
       return {};
     } else {
-      return get(Ember.getOwner(this).resolveRegistration('config:environment'), 'simpleMDE') || {};
+      return get(getOwner(this).resolveRegistration('config:environment'), 'simpleMDE') || {};
     }
   }),
 
@@ -55,7 +60,7 @@ export default Ember.TextArea.extend({
    * @private
    * get the list of options to pass to init the SimpleMDE instance
    */
-  buildSimpleMDEOptions: Ember.computed(function () {
+  buildSimpleMDEOptions: computed(function () {
     let builtOptions = assign({}, this.get('defaultSimpleMdeOptions'), this.get('globalSimpleMdeOptions'), this.get('options'));
 
     if(builtOptions.toolbar && typeOf(builtOptions.toolbar) === 'array') {
@@ -95,15 +100,17 @@ export default Ember.TextArea.extend({
    */
   didInsertElement () {
     this.set('currentEditor', new SimpleMDE(
-      Ember.merge({
+      merge({
         element: document.getElementById(this.elementId)
       }, this.get('buildSimpleMDEOptions')
       )
     ));
     this.get('currentEditor').value(this.get('value') || '');
 
-    this.get('currentEditor').codemirror.on('change', () => Ember.run.once(this, function() {
-      this.sendAction('change', this.get('currentEditor').value());
+    this.get('currentEditor').codemirror.on('change', () => once(this, function() {
+      if (this.change) {
+        this.change(this.get('currentEditor').value())
+      }
     }));
   },
 
@@ -119,7 +126,7 @@ export default Ember.TextArea.extend({
    */
   didReceiveAttrs () {
     let editor = this.get('currentEditor');
-    if (Ember.isEmpty(editor)) { return; }
+    if (isEmpty(editor)) { return; }
     let cursor = editor.codemirror.getDoc().getCursor();
     editor.value(this.get('value') || '');
     editor.codemirror.getDoc().setCursor(cursor);
